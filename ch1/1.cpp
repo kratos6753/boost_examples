@@ -3,11 +3,12 @@
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/mean.hpp>
 #include <boost/accumulators/statistics/moment.hpp>
+#include <boost/accumulators/statistics/min.hpp>
 
 using namespace boost::accumulators;
 
 int main() {
-  accumulator_set<double, stats<tag::mean, tag::moment<2> > > acc;
+  accumulator_set<double, stats<tag::mean, tag::moment<2>, tag::min> > acc;
 
   acc(1.2);
   acc(2.3);
@@ -16,6 +17,7 @@ int main() {
 
   std::cout << "Mean:   " << mean(acc) << std::endl;
   std::cout << "Moment: " << moment<2>(acc) << std::endl;
+  std::cout << "Min:    " << min(acc) << std::endl;
 
   return 0;
 }
